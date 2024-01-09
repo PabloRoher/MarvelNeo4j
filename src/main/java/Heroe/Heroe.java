@@ -1,14 +1,16 @@
+package Heroe;
+
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Property;
 
 @Node // Anotación para indicar que esta es una entidad de nodo Neo4j
-public class Character {
+public class Heroe {
 
     @Id // Identificador único para el nodo
     @GeneratedValue // Generación automática del ID
-    private Long id;
+    private String id;
 
     @Property(name = "name")
     private String name;
@@ -26,11 +28,11 @@ public class Character {
     private String identity;
 
     // Constructor vacío requerido
-    public Character() {
+    public Heroe() {
     }
 
     // Constructor con todos los campos
-    public Character(Long id, String name, String education, String placeOfOrigin, String aliases, String identity) {
+    public Heroe(String id, String name, String education, String placeOfOrigin, String aliases, String identity) {
         this.id = id;
         this.name = name;
         this.education = education;
@@ -40,11 +42,13 @@ public class Character {
     }
 
     // Getters y setters para todos los campos
-    public Long getId() {
+
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
