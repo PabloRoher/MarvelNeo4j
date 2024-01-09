@@ -1,9 +1,13 @@
 package com.example.MarvelNeo4j.Heroe;
 
-import org.springframework.data.neo4j.core.schema.Id;
-import org.springframework.data.neo4j.core.schema.GeneratedValue;
-import org.springframework.data.neo4j.core.schema.Node;
-import org.springframework.data.neo4j.core.schema.Property;
+import com.example.MarvelNeo4j.Comic.Comic;
+import com.example.MarvelNeo4j.Event.Event;
+import com.example.MarvelNeo4j.Stats.Stats;
+import com.example.MarvelNeo4j.Team.Team;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.data.neo4j.core.schema.*;
+
+import java.util.List;
 
 @Node("Character") // Anotación para indicar que esta es una entidad de nodo Neo4j
 public class Heroe {
@@ -26,6 +30,21 @@ public class Heroe {
 
     @Property(name = "identity")
     private String identity;
+
+    @Relationship(type = "PART_OF_GROUP")
+    @JsonBackReference
+    private List<Team> groups;
+    /*
+    @Relationship(type = "APPEARED_IN")
+    private List<Comic> comics;
+
+    @Relationship(type = "PART_OF_EVENT")
+    private List<Event> events;
+
+    @Relationship(type = "HAS_STATS")
+    private Stats stats;
+
+    */
 
     // Constructor vacío requerido
     public Heroe() {
@@ -90,6 +109,14 @@ public class Heroe {
 
     public void setIdentity(String identity) {
         this.identity = identity;
+    }
+
+    public List<Team> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Team> groups) {
+        this.groups = groups;
     }
 
     // Método toString (opcional) para imprimir la información del personaje

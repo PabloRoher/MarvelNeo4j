@@ -1,12 +1,13 @@
 package com.example.MarvelNeo4j.Team;
 
+import com.example.MarvelNeo4j.Heroe.Heroe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/teams")
+@RequestMapping("/groups")
 public class TeamController {
 
     private final TeamService teamService;
@@ -29,5 +30,10 @@ public class TeamController {
     @GetMapping
     public List<Team> getAllTeams() {
         return teamService.getAllTeams();
+    }
+
+    @GetMapping("/name/{name}/heroes")
+    public List<Heroe> getHeroesFromGroupByName(@PathVariable String name) {
+        return teamService.getHeroesFromTeamByName(name);
     }
 }

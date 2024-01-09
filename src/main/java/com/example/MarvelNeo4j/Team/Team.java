@@ -1,13 +1,16 @@
 package com.example.MarvelNeo4j.Team;
 
-import org.springframework.data.neo4j.core.schema.Id;
-import org.springframework.data.neo4j.core.schema.Node;
-import org.springframework.data.neo4j.core.schema.Property;
+import com.example.MarvelNeo4j.Heroe.Heroe;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.data.neo4j.core.schema.*;
 
-@Node("Team")
+import java.util.List;
+
+@Node("Group")
 public class Team {
 
     @Id
+    @GeneratedValue
     private String id;
 
     @Property(name = "name")
@@ -15,6 +18,10 @@ public class Team {
 
     @Property(name = "base")
     private String base;
+
+    @Relationship(type = "PART_OF_GROUP", direction = Relationship.Direction.INCOMING)
+    @JsonBackReference
+    private List<Heroe> members;
 
     public Team() {
     }
@@ -49,7 +56,15 @@ public class Team {
         this.base = base;
     }
 
-    // Método toString para imprimir la información del equipo
+    public List<Heroe> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Heroe> members) {
+        this.members = members;
+    }
+
+    // Método toString (opcional) para imprimir la información del equipo
     @Override
     public String toString() {
         return "Team{" +
