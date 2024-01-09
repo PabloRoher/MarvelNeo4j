@@ -1,11 +1,11 @@
-package Heroe;
+package com.example.MarvelNeo4j.Heroe;
 
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Property;
 
-@Node // Anotación para indicar que esta es una entidad de nodo Neo4j
+@Node("Character") // Anotación para indicar que esta es una entidad de nodo Neo4j
 public class Heroe {
 
     @Id // Identificador único para el nodo
